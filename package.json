@@ -1,0 +1,20 @@
+{
+  "name": "fruitsalad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "watchify ./assets/script.js -o bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "watchify": "^4.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "nodemon": "^2.0.22"
+  }
+}
