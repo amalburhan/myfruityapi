@@ -1,3 +1,115 @@
 body {
-    background-color: pink;
+    font-family: Geologica, sans-serif;
+    background-color: #F6F6F6;
+    ;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-right: 13px;
+    font-size: 70px;
+    color: #696969;
+}
+
+
+.rainbow-text span {
+    transition: color 0.5s ease;
+}
+
+.rainbow-text span:nth-child(1):hover {
+    color: #FF5A5A;
+}
+
+.rainbow-text span:nth-child(2):hover {
+    color: #FFB543;
+}
+
+.rainbow-text span:nth-child(3):hover {
+    color: #eded3b;
+}
+
+.rainbow-text span:nth-child(4):hover {
+    color: #93FF68;
+}
+
+.rainbow-text span:nth-child(5):hover {
+    color: #18d2f2;
+}
+
+.rainbow-text span:nth-child(7):hover {
+    color: #C660FF;
+}
+
+.rainbow-text span:nth-child(8):hover {
+    color: #f75caf;
+}
+
+.rainbow-text span:nth-child(9):hover {
+    color: #FF5A5A;
+}
+
+.rainbow-text span:nth-child(10):hover {
+    color: #FFB543;
+}
+
+.rainbow-text span:nth-child(11):hover {
+    color: #eded3b;
+}
+
+
+#inputSection form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fruitList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fruitList ul {
+    padding: 0;
+    /*removes default padding*/
+}
+
+#fruitList li {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#fruitCalories {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#fruitInput {
+    font-size: 14px;
+    border: none;
+    border-radius: 3px 0px 0px 3px;
+    width: 250px;
+    padding: 12px;
+}
+
+input:focus {
+    outline: none;
+}
+
+#inputButton {
+    font-size: 14px;
+    color: #696969;
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    padding: 12px;
+    background-color: #E7E7E7;
 }
