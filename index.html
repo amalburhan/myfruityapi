@@ -5,42 +5,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Salad</title>
     <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;500&display=swap" rel="stylesheet">
+    <title>Fruit Salad 2</title>
 </head>
 
 <body>
+    <h1 class="rainbow-text">
+        <span>F</span>
+        <span>r</span>
+        <span>u</span>
+        <span>i</span>
+        <span>t</span>
+        <span>&nbsp;</span>
+        <span>S</span>
+        <span>a</span>
+        <span>l</span>
+        <span>a</span>
+        <span>d</span>
+    </h1>
+
 
     <section id="inputSection">
         <form>
-            <label for="fruitInput">Enter Fruit Name:</label>
-            <input id="fruitInput" name="fruit" type="text" placeholder="Banana">
-            <input type="submit" value="Submit"> <!--submit is better than button bc it will actually submit??-->
-        </form>
+            <input type="text" id="fruitInput" name="fruit" placeholder="Enter a fruit" required>
+            <input type="submit" value="Submit" id="inputButton">
+            <label for="fruitInput" class="label"></label>
 
+        </form>
     </section>
 
-    <section id="fruitSection" class="fruitImage">
 
-        <ul id="fruitList">
+    <section id="fruitList">
+
+        <ul>
 
         </ul>
 
     </section>
 
-    <section id="nutritionSection">
-
+    <footer id="fruitCalories">
         <p></p>
-
-
-    </section>
-
-
-
-
-
-
-    <script src="assets/script.js" defer></script> <!--could just put it in head tag-->
+    </footer>
 
 </body>
 
