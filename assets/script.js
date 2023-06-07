@@ -1,78 +1,83 @@
 const fruitForm = document.querySelector("#inputSection form");
-console.log(fruitForm);
-const fruitNutrition = document.querySelector("#nutritionSection p");
-let cal = 0;
-const fruitList = document.querySelector("#fruitSection ul");
-const fruitImage = document.querySelector(".fruitImage ul");
+const fruitList = document.querySelector("#fruitList ul");
+const fruitCalories = document.querySelector("#fruitCalories");
 
-const addFruit = (fruit) => {
-    const li = document.createElement('li');
-    li.textContent = `${fruit.name} of Genus ${fruit.genus}`;
-    fruitList.appendChild(li);
-    cal += fruit.nutritions.calories;
+const apikey = "37050476-c92ab61e9e1150558414fbcbd";
 
-    fruitNutrition.textContent = `Total calories: ${cal}`;
+let totalCalories = 0;
 
-    li.addEventListener("click", () => {
-        li.remove();
-        cal -= fruit.nutritions.calories;
+const addFruit = async (data) => {
 
-        fruitNutrition.textContent = `Total calories: ${cal}`;
-    }, { once: true });
+    //add fruit list item + calories
+    const listItem = document.createElement("li");
+    listItem.textContent = `${data.name} of Genus ${data.genus}`;
+    totalCalories += data.nutritions.calories;
+    fruitCalories.textContent = `Total calories: ${totalCalories}`;
 
-    fetchFruitImage(fruit);
+    //add image
+    let imageData = await fetchFruitImage(data.name);
+    const imageItem = document.createElement("img");
+    imageItem.src = imageData;
+    listItem.appendChild(imageItem);
 
-};
+    fruitList.appendChild(listItem);
 
-const addFruitImage = (fruit) => {
-    const img = document.createElement('img');
-    img.src = fruit.hits[0].previewURL;
-    fruitList.appendChild(img);
+    //remove fruit list item + calories + image
+    listItem.addEventListener("click", () => {
+        listItem.remove();
+        totalCalories -= data.nutritions.calories;
+
+        if (totalCalories > 0) {
+            fruitCalories.textContent = `Total calories: ${totalCalories}`;
+        } else {
+
+            fruitCalories.textContent = "";
+        }
+
+    })
 }
 
 
+const fetchFruitData = async (e) => {
 
+    e.preventDefault();
 
-const fetchFruitData = async (fruit) => {
     try {
-        const resp = await fetch(`https://amalsfruitapi.onrender.com/fruits/${fruit}`
-        );
+        let fruit = e.target.fruitInput.value;
+        const resp = await fetch(`https://amalsfruitapi.onrender.com/fruits/${fruit}`);
         if (resp.ok) {
-            const data = await resp.json();
-            addFruit(data);
+            const fruitData = await resp.json();
+            addFruit(fruitData);
+            e.target.fruitInput.value = "";
+
         } else {
-            throw "Error: status code = " + resp.status;
+            throw `ERROR: status code = ${resp.status}`;
         }
-
     } catch (err) {
-
         console.log(err);
-
     }
 }
 
-const fetchFruitImage = async (fruit) => {
+
+const fetchFruitImage = async (fruitName) => {
+
     try {
-        const resp = await fetch(`https://pixabay.com/api/?key=37050476-c92ab61e9e1150558414fbcbd&q=${fruit.name}&image_type=photo`);
+        const resp = await fetch(`https://pixabay.com/api/?key=${apikey}&q=${fruitName}&image_type=photo`);
         if (resp.ok) {
-            const data = await resp.json()
-            addFruitImage(data)
+            const fruitImageData = await resp.json();
+            return fruitImageData.hits[0].previewURL;
         } else {
-            throw "Error: http status code = " + resp.status
+            throw `ERROR: status code = ${resp.status}`;
         }
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 }
 
 
+fruitForm.addEventListener("submit", fetchFruitData);
 
-const extractFruit = (e) => {
-    e.preventDefault(); // action does not clear
-    fetchFruitData(e.target.fruitInput.value);
-    // clear text box
-    e.target.fruitInput.value = "";
-};
 
-fruitForm.addEventListener("submit", extractFruit);
+
+
 
